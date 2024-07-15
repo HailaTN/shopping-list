@@ -9,29 +9,23 @@
 /* Очищать input после добавления нового элемента в список */
 
 const sendInput = document.querySelector('#input');
-const containerProducts = document.querySelector('.groceries');
+const containerProducts = document.querySelector('.items');
 
-
-sendInput.addEventListener('keydown', function(event) {
+sendInput.addEventListener('keydown', function (event) {
     if(event.key == 'Enter') {
 
-    const groceryListText = sendInput.value;
+        const newGroceries = sendInput.value;
 
-    const newProduct = document.createElement ('div');
-    newProduct.classList.add('products');
-    newProduct.textContent = groceryListText;
+        const newGroceriesWrapper = document.createElement ('div');
+        newGroceriesWrapper.textContent = newGroceries;
+      
+        containerProducts.append(newGroceriesWrapper);
 
-    containerProducts.append(newProduct);
+        sendInput.value = '';
 
-    sendInput.value = '';
-
-        const products = document.querySelectorAll('.products');
-
-        for (let item of products) { 
-            item.addEventListener('click', function () {
-              item.classList.toggle('done');
-            })
-        }
+        newGroceriesWrapper.addEventListener('click', function() {
+          newGroceriesWrapper.classList.toggle('done');
+        })
       
     }
   })
